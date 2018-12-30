@@ -23,3 +23,16 @@ def login():
     app_token = json.loads(response)
     return app_token
 
+def search(query,app_token):
+    # Use the query for searching the tweets
+    url='https://api.twitter.com/1.1/search/tweets.json?%s' % urllib.urlencode({'q':query,'type':'popular'}) 
+
+    # Set the Authorization header using the value of the access_token key from the app_token dictionary created above
+    http_headers={'Authorization': 'Bearer %s' % app_token ['access_token']} 
+
+    # Send the request
+    request = urllib2.Request(url=url, data=None, headers=http_headers)
+    response = urllib2.urlopen(request).read() 
+    return response
+
+

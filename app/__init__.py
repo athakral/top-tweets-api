@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route('/twitter/api/v1.0/tweets/<query>', methods=['GET'])
 def get_tasks(query):
-    return jsonify(client.login())
+    return client.search(query, client.login())
 
 
 
