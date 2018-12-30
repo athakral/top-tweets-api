@@ -6,7 +6,11 @@ app = Flask(__name__)
 
 @app.route('/twitter/api/v1.0/tweets/<query>', methods=['GET'])
 def get_tasks(query):
-    return client.search(query, client.login())
+    # make response, since we have to set the mimetype correctly
+    resp = make_response(client.search(query,client.login()))
+    # set the correct mimetype
+    resp.mimetype = 'application/json';
+    return resp
 
 
 
