@@ -1,6 +1,14 @@
 from flask import Flask, jsonify, make_response
+from twitterclient import client
 
 app = Flask(__name__)
+
+
+@app.route('/twitter/api/v1.0/tweets/<query>', methods=['GET'])
+def get_tasks(query):
+    return jsonify(client.login())
+
+
 
 @app.errorhandler(404)
 def not_found(error):
